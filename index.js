@@ -1,3 +1,5 @@
+let item = 11
+
 function newImage(src, left, bottom) {
     let img = document.createElement('img')
     img.src = 'assets/' + src
@@ -16,7 +18,9 @@ function newItem(src, left, bottom) {
     document.body.append(img)
 
     img.addEventListener('dblclick', function () {
-        img.remove()
+        img.style.left = item + 'px'
+        img.style.top = '11px'
+        item += 65
     })
 }
 
@@ -35,6 +39,7 @@ for (let y = 500; y <= window.innerHeight; y += 100) {
 }
 
 // Renders images
+newImage('inv.png')
 newImage('green-character.gif', '100px', '100px')
 newImage('pine-tree.png', '450px', '200px')
 newImage('tree.png', '200px', '300px')
