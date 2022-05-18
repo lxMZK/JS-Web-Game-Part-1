@@ -15,12 +15,15 @@ function newItem(src, left, bottom) {
     img.style.position = 'fixed'
     img.style.left = left
     img.style.bottom = bottom
+    img.style.cursor = 'pointer'
     document.body.append(img)
 
     img.addEventListener('dblclick', function () {
-        img.style.left = item + 'px'
-        img.style.top = '11px'
-        item += 65
+        if (img.style.top != '11px') {
+            img.style.left = item + 'px'
+            img.style.top = '11px'
+            item += 65
+        }
     })
 }
 
