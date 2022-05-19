@@ -56,6 +56,7 @@ function newImage(src, left, bottom) {
     img.style.position = 'fixed'
     img.style.left = left
     img.style.bottom = bottom
+    img.style.transition = '.1s'
     document.body.append(img)
     return img
 }
