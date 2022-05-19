@@ -5,7 +5,6 @@ let speed = 10
 document.onkeydown = keyDown
 document.onkeyup = keyUp
 function keyDown(e) {
-    txt.style.opacity = '0'
     switch (e.keyCode) {
         case 37:
         case 65:
@@ -15,9 +14,9 @@ function keyDown(e) {
                 greenCharacter.style.left = (parseInt(greenCharacter.style.left) - speed) + 'px'
             }
             break;
-        case 38:
-        case 87:
-            // Move Up
+            case 38:
+                case 87:
+                    // Move Up
             greenCharacter.src = 'assets/green-character/north.gif'
             if (parseInt(greenCharacter.style.bottom) + speed < 500) {
                 greenCharacter.style.bottom = (parseInt(greenCharacter.style.bottom) + speed) + 'px'
@@ -31,9 +30,9 @@ function keyDown(e) {
                 greenCharacter.style.left = (parseInt(greenCharacter.style.left) + speed) + 'px'
             }
             break;
-        case 40:
-        case 83:
-            // Move Down
+            case 40:
+                case 83:
+                    // Move Down
             greenCharacter.src = 'assets/green-character/south.gif'
             if (parseInt(greenCharacter.style.bottom) - speed > 0) {
                 greenCharacter.style.bottom = (parseInt(greenCharacter.style.bottom) - speed) + 'px'
@@ -43,10 +42,14 @@ function keyDown(e) {
             // Shift Key
             speed = 20
             break;
-        default:
+            case 32:
+            // Space Key
+            dialog.style.opacity = '0'
+            break;
+            default:
             console.log(e.keyCode)
             break;
-    }
+        }
 }
 
 function keyUp(e) {
@@ -66,9 +69,9 @@ function newImage(src, left, bottom) {
     return img
 }
 
-function newItem(src, left, bottom) {
+function newItem(id, left, bottom) {
     let img = document.createElement('img')
-    img.src = 'assets/' + src
+    img.src = 'assets/' + id + '.png'
     img.style.position = 'fixed'
     img.style.left = left
     img.style.bottom = bottom
@@ -81,8 +84,34 @@ function newItem(src, left, bottom) {
             img.style.left = item + 'px'
             img.style.top = '11px'
             item += 65
+            
+            dialog.remove()
+            dialog = newTxtbox('You picked up a ' + id + '!')
         }
     })
+}
+
+// Renders dialog box
+function newTxtbox(s) {
+    let container = document.createElement('div')
+    let txt = document.createElement('h2')
+    let flag = document.createElement('h3')
+    txt.append(s)
+    container.style.display = 'flex'
+    container.style.justifyContent = 'space-between'
+    container.style.alignContent = 'center'
+    container.style.width = '568px'
+    container.style.color = 'lightgray'
+    container.style.backgroundColor = "#3d3f23"
+    container.style.transform = 'translate(0, 70px)'
+    container.style.transition = '1s'
+    container.style.fontStyle = 'italic'
+    container.style.border = "groove #939393 7px"
+    flag.append('<space>')
+    container.append(txt)
+    container.append(flag)
+    document.body.append(container)
+    return container
 }
 
 // Renders grass up to well
@@ -109,14 +138,9 @@ newImage('crate.png', '150px', '200px')
 newImage('well.png', '500px', '425px')
 
 // Creates interactables
-newItem('sword.png', '500px', '405px')
-// ***Notice: Asset is misspelled***
-newItem('sheild.png', '165px', '185px')
-newItem('staff.png', '600px', '100px')
+newItem('sword', '500px', '405px')
+newItem('shield', '165px', '185px')
+newItem('staff', '600px', '100px')
 
-let txt = document.createElement('h1')
-txt.append('Use Arrow Keys to Move and Shift to Speed Up!')
-txt.style.opacity = '1'
-txt.style.transform = 'translate(0, 50px)'
-txt.style.transition = '3s'
-document.body.append(txt)
+// Creates dialog box
+let dialog = newTxtbox('Use Arrow Keys to Move and Shift to Speed Up!')
