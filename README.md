@@ -1,5 +1,12 @@
-# Web Game I
+# Web Game 
 
-This is an activity for SD Lesson 5.3.3- Function Practice
+Functions include:
 
-Please refer to the Activity Guide in Canvas for directions.
+  working inventory
+  moveable character
+  interactable objects
+  fully rendered playing area
+  variable movement speed
+  collision with bounding box
+  functional dialog boxes
+  fully js
