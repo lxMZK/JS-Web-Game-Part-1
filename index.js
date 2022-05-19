@@ -5,6 +5,7 @@ let speed = 10
 document.onkeydown = keyDown
 document.onkeyup = keyUp
 function keyDown(e) {
+    txt.style.opacity = '0'
     switch (e.keyCode) {
         case 37:
             // Move Left
@@ -37,9 +38,6 @@ function keyDown(e) {
         case 16:
             // Shift Key
             speed = 20
-            break;
-        default:
-            console.log(e.keyCode)
             break;
     }
 }
@@ -108,3 +106,10 @@ newItem('sword.png', '500px', '405px')
 // ***Notice: Asset is misspelled***
 newItem('sheild.png', '165px', '185px')
 newItem('staff.png', '600px', '100px')
+
+let txt = document.createElement('h1')
+txt.append('Use Arrow Keys to Move and Shift to Speed Up!')
+txt.style.opacity = '1'
+txt.style.transform = 'translate(0, 50px)'
+txt.style.transition = '3s'
+document.body.append(txt)
