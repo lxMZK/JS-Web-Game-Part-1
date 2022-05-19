@@ -8,6 +8,7 @@ function keyDown(e) {
     txt.style.opacity = '0'
     switch (e.keyCode) {
         case 37:
+        case 65:
             // Move Left
             greenCharacter.src = 'assets/green-character/west.gif'
             if (parseInt(greenCharacter.style.left) - speed > 0) {
@@ -15,6 +16,7 @@ function keyDown(e) {
             }
             break;
         case 38:
+        case 87:
             // Move Up
             greenCharacter.src = 'assets/green-character/north.gif'
             if (parseInt(greenCharacter.style.bottom) + speed < 500) {
@@ -22,6 +24,7 @@ function keyDown(e) {
             }
             break;
         case 39:
+        case 68:
             // Move Right
             greenCharacter.src = 'assets/green-character/east.gif'
             if (parseInt(greenCharacter.style.left) + speed < (window.innerWidth - greenCharacter.width)) {
@@ -29,6 +32,7 @@ function keyDown(e) {
             }
             break;
         case 40:
+        case 83:
             // Move Down
             greenCharacter.src = 'assets/green-character/south.gif'
             if (parseInt(greenCharacter.style.bottom) - speed > 0) {
@@ -38,6 +42,9 @@ function keyDown(e) {
         case 16:
             // Shift Key
             speed = 20
+            break;
+        default:
+            console.log(e.keyCode)
             break;
     }
 }
